@@ -20,6 +20,7 @@ const resources = {
       form_placeholders: {
         loading: "Loading...",
         select: "Please select",
+        input: "Enter value",
       },
       form_errors: {
         required: "This field is required",
@@ -43,6 +44,7 @@ const resources = {
       form_placeholders: {
         loading: "در حال بارگذاری...",
         select: "انتخاب کنید",
+        input: "مقداری وارد کنید",
       },
       form_errors: {
         required: "این فیلد الزامی است",

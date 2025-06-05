@@ -1,50 +1,52 @@
+"use client";
+
 import { Controller, useFormState } from "react-hook-form";
 import { motion, AnimatePresence } from "framer-motion";
-import { Checkbox } from "./Checkbox";
-import { Label } from "../Label/Label";
 import { useTranslation } from "react-i18next";
 
-interface CheckboxPrimaryProps {
+import { Calendar } from "./Calendar";
+import { Label } from "../Label/Label";
+
+interface CalendarPrimaryProps {
   name: string;
-  label: string;
+  label?: string;
   control: any;
   required?: boolean;
   className?: string;
   [key: string]: any;
 }
 
-const CheckboxPrimary = ({
+const CalendarPrimary = ({
   name,
   label,
   control,
   required = false,
-  className,
+  className = "",
   ...rest
-}: CheckboxPrimaryProps) => {
+}: CalendarPrimaryProps) => {
   const { t } = useTranslation();
   const { errors } = useFormState({ control });
 
   return (
-    <div
-      className={`flex flex-col justify-center ${className ?? ""}`}
-      data-slot="provider"
-    >
-      <div className="flex items-center space-x-2">
-        <Controller
-          name={name}
-          control={control}
-          rules={{ required }}
-          render={({ field }) => (
-            <Checkbox
-              checked={field.value || false}
-              onCheckedChange={field.onChange}
-              id={name}
-              {...rest}
-            />
-          )}
-        />
-        <Label htmlFor={name}>{label}</Label>
-      </div>
+    <div className={`flex flex-col mb-4 ${className}`}>
+      {label && (
+        <Label htmlFor={name} className="mb-1 font-medium">
+          {label}
+        </Label>
+      )}
+
+      <Controller
+        name={name}
+        control={control}
+        rules={{ required }}
+        render={({ field }) => (
+          <Calendar
+            selected={field.value}
+            onSelect={field.onChange}
+            {...rest}
+          />
+        )}
+      />
 
       <AnimatePresence>
         {errors[name] && (
@@ -63,4 +65,4 @@ const CheckboxPrimary = ({
   );
 };
 
-export default CheckboxPrimary;
+export default CalendarPrimary;

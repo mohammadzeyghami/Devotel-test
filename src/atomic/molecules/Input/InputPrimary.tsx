@@ -1,50 +1,56 @@
+import React from "react";
 import { Controller, useFormState } from "react-hook-form";
 import { motion, AnimatePresence } from "framer-motion";
-import { Checkbox } from "./Checkbox";
-import { Label } from "../Label/Label";
 import { useTranslation } from "react-i18next";
+import { Input } from "./input";
+import { Label } from "../Label/Label";
 
-interface CheckboxPrimaryProps {
+interface InputPrimaryProps {
   name: string;
-  label: string;
+  label?: string;
   control: any;
   required?: boolean;
+  type?: "text" | "number" | "date" | "email" | "password";
+  placeholder?: string;
   className?: string;
   [key: string]: any;
 }
 
-const CheckboxPrimary = ({
+const InputPrimary = ({
   name,
   label,
   control,
   required = false,
-  className,
+  type = "text",
+  placeholder,
+  className = "",
   ...rest
-}: CheckboxPrimaryProps) => {
+}: InputPrimaryProps) => {
   const { t } = useTranslation();
   const { errors } = useFormState({ control });
 
   return (
-    <div
-      className={`flex flex-col justify-center ${className ?? ""}`}
-      data-slot="provider"
-    >
-      <div className="flex items-center space-x-2">
-        <Controller
-          name={name}
-          control={control}
-          rules={{ required }}
-          render={({ field }) => (
-            <Checkbox
-              checked={field.value || false}
-              onCheckedChange={field.onChange}
-              id={name}
-              {...rest}
-            />
-          )}
-        />
-        <Label htmlFor={name}>{label}</Label>
-      </div>
+    <div className={`flex flex-col mb-4 ${className}`}>
+      {label && (
+        <Label htmlFor={name} className="mb-1 font-medium">
+          {label}
+        </Label>
+      )}
+
+      <Controller
+        name={name}
+        control={control}
+        rules={{ required }}
+        render={({ field }) => (
+          <Input
+            id={name}
+            type={type}
+            {...field}
+            placeholder={placeholder || t("form_placeholders.input")}
+            {...rest}
+          />
+        )}
+      />
 
       <AnimatePresence>
         {errors[name] && (
@@ -63,4 +69,4 @@ const CheckboxPrimary = ({
   );
 };
 
-export default CheckboxPrimary;
+export default InputPrimary;

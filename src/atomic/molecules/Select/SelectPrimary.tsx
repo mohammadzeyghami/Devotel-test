@@ -9,6 +9,7 @@ import {
   SelectValue,
 } from "./Select";
 import { useTranslation } from "react-i18next";
+import { Label } from "../Label/Label";
 
 interface SelectPrimaryProps {
   name: string;
@@ -59,7 +60,7 @@ const SelectPrimary = ({
 
   return (
     <div className="flex flex-col mb-4">
-      {label && <label className="mb-1">{label}</label>}
+      {label && <Label className="mb-1 font-medium">{label}</Label>}
 
       <Controller
         name={name}
