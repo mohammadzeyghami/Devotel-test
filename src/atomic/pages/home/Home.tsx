@@ -1,15 +1,12 @@
-import { useFetchInsuranceForm } from "@/atomic/services/customTanstackHooks/useFetchInsuranceForm/useFetchInsuranceForm";
+import PrimaryTable from "@/atomic/molecules/Table/TablePrimary";
+import { useGetSubmissions } from "@/atomic/services/customTanstackHooks/useGetSubmissions/useGetSubmissions";
 
 const HomePage = () => {
-  const { data } = useFetchInsuranceForm();
-  console.log({ data });
+  const { data } = useGetSubmissions();
+
   return (
-    <div
-    // className={
-    //   "bg-white dark:bg-gray-900 dark:text-white flex-1 min-h-[calc(100vh-140px)]"
-    // }
-    >
-      Home
+    <div>
+      {data?.data && <PrimaryTable columns={data?.columns} data={data?.data} />}
     </div>
   );
 };

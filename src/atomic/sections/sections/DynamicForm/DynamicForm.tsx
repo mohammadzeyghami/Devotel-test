@@ -1,9 +1,11 @@
+import { Button } from "@/atomic/molecules/Button/button";
 import CalendarPrimary from "@/atomic/molecules/Calendar/CalendarPrimary";
 import CheckboxPrimary from "@/atomic/molecules/Checkbox/CheckboxPrimary";
 import InputPrimary from "@/atomic/molecules/Input/InputPrimary";
 import RadioGroupPrimary from "@/atomic/molecules/RadioGroup/RadioGroupPrimary";
 import SelectPrimary from "@/atomic/molecules/Select/SelectPrimary";
 import { useForm, FormProvider } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 export const DynamicForm = ({
   fields,
@@ -12,6 +14,7 @@ export const DynamicForm = ({
   fields: any[];
   onSubmit: (data: any) => void;
 }) => {
+  const { t } = useTranslation();
   const methods = useForm();
   const {
     register,
@@ -83,17 +86,10 @@ export const DynamicForm = ({
 
       case "checkbox":
         return (
-          <div key={field.id} className="flex h-full col-span-1 ">
+          <div key={field.id} className="flex h-full col-span-1">
             <CheckboxPrimary {...commonProps} />
           </div>
         );
-
-      //   case "calendar":
-      //     return (
-      //       <div key={field.id} className="col-span-1">
-      //         <CalendarPrimary {...commonProps} />
-      //       </div>
-      //     );
 
       default:
         return null;
@@ -102,16 +98,11 @@ export const DynamicForm = ({
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 ">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div className="grid items-start grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {fields.map(renderField)}
         </div>
-        <button
-          type="submit"
-          className="px-4 py-2 text-white bg-blue-600 rounded"
-        >
-          Submit
-        </button>
+        <Button type="submit">{t("form_placeholders.submit", "Submit")}</Button>
       </form>
     </FormProvider>
   );

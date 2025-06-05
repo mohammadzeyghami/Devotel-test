@@ -25,6 +25,19 @@ const resources = {
       form_errors: {
         required: "This field is required",
       },
+      table: {
+        search: "Search...",
+        page: "Page {{page}} of {{totalPages}}",
+        prev: "Prev",
+        next: "Next",
+        columns: {
+          "Full Name": "Full Name",
+          Age: "Age",
+          Gender: "Gender",
+          "Insurance Type": "Insurance Type",
+          City: "City",
+        },
+      },
     },
   },
   fa: {
@@ -48,6 +61,19 @@ const resources = {
       },
       form_errors: {
         required: "این فیلد الزامی است",
+      },
+      table: {
+        search: "جستجو...",
+        page: "صفحه {{page}} از {{totalPages}}",
+        prev: "قبلی",
+        next: "بعدی",
+        columns: {
+          "Full Name": "نام کامل",
+          Age: "سن",
+          Gender: "جنسیت",
+          "Insurance Type": "نوع بیمه",
+          City: "شهر",
+        },
       },
     },
   },
