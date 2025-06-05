@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useFetchInsuranceForm } from "@/atomic/services/customTanstackHooks/useFetchInsuranceForm/useFetchInsuranceForm";
 import { useTranslation } from "react-i18next";
 import { DynamicForm } from "@/atomic/sections/sections/DynamicForm/DynamicForm";
@@ -9,6 +9,7 @@ const FormPage = () => {
   const { data, isLoading, isError } = useFetchInsuranceForm();
   const { t } = useTranslation();
   const [selectedForm, setSelectedForm] = useState<any | null>(null);
+  const formRef = useRef<any>(null);
 
   if (isLoading) {
     return <div className="p-4 text-gray-500">{t("loading")}</div>;
@@ -30,7 +31,7 @@ const FormPage = () => {
             transition={{ duration: 0.5 }}
             className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3"
           >
-            {data?.map((form) => (
+            {data?.map((form: any) => (
               <button
                 key={form.formId}
                 onClick={() => setSelectedForm(form)}
@@ -61,8 +62,9 @@ const FormPage = () => {
             </h3>
           </div>
           <DynamicForm
+            ref={formRef}
+            formId={selectedForm.formId}
             fields={selectedForm.fields}
-            onSubmit={(data) => console.log("Submitted data:", data)}
           />
         </motion.div>
       )}
