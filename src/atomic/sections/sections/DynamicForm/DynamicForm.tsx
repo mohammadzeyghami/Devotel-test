@@ -1,3 +1,6 @@
+// DynamicForm.tsx
+import CheckboxPrimary from "@/atomic/molecules/Checkbox/CheckboxPrimary";
+import RadioGroupPrimary from "@/atomic/molecules/RadioGroup/RadioGroupPrimary";
 import SelectPrimary from "@/atomic/molecules/Select/SelectPrimary";
 import { useForm, FormProvider } from "react-hook-form";
 
@@ -9,14 +12,18 @@ export const DynamicForm = ({
   onSubmit: (data: any) => void;
 }) => {
   const methods = useForm();
-  const { register, handleSubmit, watch, setValue, control } = methods;
+  const {
+    register,
+    handleSubmit,
+    watch,
+    control,
+    formState: { errors },
+  } = methods;
 
-  // render a single field
   const renderField = (field: any) => {
     const visible = field.visibility
       ? watch(field.visibility.dependsOn) === field.visibility.value
       : true;
-
     if (!visible) return null;
 
     if (field.type === "group") {
@@ -42,51 +49,50 @@ export const DynamicForm = ({
             />
           </div>
         );
+
       case "select":
         return (
-          <SelectPrimary
-            name={field.id}
-            label={field.label}
-            control={control}
-            required={field.required}
-            options={(field.options || []).map((opt: string) => ({
-              label: opt,
-              value: opt,
-            }))}
-          />
+          <div key={field.id}>
+            <SelectPrimary
+              name={field.id}
+              label={field.label}
+              control={control}
+              required={field.required}
+              options={field.options}
+              dynamicOptions={field.dynamicOptions}
+              watch={watch} // 🟢 پاس دادن تابع watch
+            />
+          </div>
         );
+
       case "radio":
         return (
-          <div key={field.id} className="flex flex-col mb-4">
-            <label>{field.label}</label>
-            <div className="flex gap-4">
-              {field.options?.map((opt: string) => (
-                <label key={opt} className="flex items-center gap-1">
-                  <input
-                    type="radio"
-                    value={opt}
-                    {...register(field.id, { required: field.required })}
-                  />
-                  {opt}
-                </label>
-              ))}
-            </div>
+          <div key={field.id}>
+            <RadioGroupPrimary
+              name={field.id}
+              label={field.label}
+              control={control}
+              required={field.required}
+              options={(field.options || []).map((opt: string) => ({
+                label: opt,
+                value: opt,
+              }))}
+            />
           </div>
         );
+
       case "checkbox":
         return (
-          <div key={field.id} className="flex flex-col mb-4">
-            <label>{field.label}</label>
-            <div className="flex flex-wrap gap-4">
-              {field.options?.map((opt: string) => (
-                <label key={opt} className="flex items-center gap-1">
-                  <input type="checkbox" value={opt} {...register(field.id)} />
-                  {opt}
-                </label>
-              ))}
-            </div>
+          <div key={field.id}>
+            <CheckboxPrimary
+              name={field.id}
+              label={field.label}
+              control={control}
+              required={field.required}
+            />
           </div>
         );
+
       default:
         return null;
     }

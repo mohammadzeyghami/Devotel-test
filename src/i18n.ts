@@ -17,6 +17,13 @@ const resources = {
         home_insurance_application: "Home Insurance Application",
         car_insurance_application: "Car Insurance Application",
       },
+      form_placeholders: {
+        loading: "Loading...",
+        select: "Please select",
+      },
+      form_errors: {
+        required: "This field is required",
+      },
     },
   },
   fa: {
@@ -32,6 +39,13 @@ const resources = {
         health_insurance_application: "فرم بیمه سلامت",
         home_insurance_application: "فرم بیمه خانه",
         car_insurance_application: "فرم بیمه خودرو",
+      },
+      form_placeholders: {
+        loading: "در حال بارگذاری...",
+        select: "انتخاب کنید",
+      },
+      form_errors: {
+        required: "این فیلد الزامی است",
       },
     },
   },
