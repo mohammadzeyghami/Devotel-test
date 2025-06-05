@@ -28,11 +28,6 @@ export default function LayoutMain({ children }: { children: ReactNode }) {
       {/* <AppSidebar /> */}
       <SidebarInset>
         <header className="flex items-center h-16 gap-2 px-4 border-b">
-          <SidebarTrigger className="-ml-1" />
-          <Separator
-            orientation="vertical"
-            className="mr-2 data-[orientation=vertical]:h-4"
-          />
           <div className="flex justify-between w-full gap-4 pt-4 mb-4">
             <div className="flex gap-4">
               <Link to="/" className="underline">

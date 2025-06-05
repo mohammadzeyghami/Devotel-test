@@ -9,6 +9,14 @@ const resources = {
       language: "Language",
       home: "Home",
       about: "About",
+      loading: "Loading forms...",
+      error_loading_forms: "Failed to load forms",
+      available_forms: "Available Insurance Forms",
+      forms: {
+        health_insurance_application: "Health Insurance Application",
+        home_insurance_application: "Home Insurance Application",
+        car_insurance_application: "Car Insurance Application",
+      },
     },
   },
   fa: {
@@ -17,6 +25,14 @@ const resources = {
       language: "زبان",
       home: "خانه",
       about: "درباره ما",
+      loading: "در حال بارگذاری فرم‌ها...",
+      error_loading_forms: "بارگذاری فرم‌ها با خطا مواجه شد",
+      available_forms: "فرم‌های موجود بیمه",
+      forms: {
+        health_insurance_application: "فرم بیمه سلامت",
+        home_insurance_application: "فرم بیمه خانه",
+        car_insurance_application: "فرم بیمه خودرو",
+      },
     },
   },
 };

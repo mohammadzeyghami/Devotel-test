@@ -1,13 +1,15 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./atomic/pages/home/Home";
 import LayoutMain from "./atomic/sections/layouts/LayoutMain";
+import FormPage from "./atomic/pages/form/Form";
+import HomePage from "./atomic/pages/home/Home";
 
 function App() {
   return (
     <LayoutMain>
-      <div className="min-h-screen p-6 text-black transition-all bg-white dark:bg-gray-900 dark:text-white">
+      <div>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/form" element={<FormPage />} />
           {/* <Route path="/about" element={<About />} /> */}
         </Routes>
       </div>
