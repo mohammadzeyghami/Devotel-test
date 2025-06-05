@@ -25,9 +25,14 @@ const ITEMS_PER_PAGE = 10;
 type PrimaryTableProps = {
   columns: (keyof Omit<InsuranceRow, "id">)[];
   data: InsuranceRow[];
+  isLoading?: boolean;
 };
 
-const PrimaryTable = ({ columns, data }: PrimaryTableProps) => {
+const PrimaryTable = ({
+  columns,
+  data,
+  isLoading = false,
+}: PrimaryTableProps) => {
   const { t } = useTranslation();
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState<keyof InsuranceRow>("Full Name");
@@ -78,60 +83,68 @@ const PrimaryTable = ({ columns, data }: PrimaryTableProps) => {
         className="max-w-sm"
       />
 
-      <Table>
-        <TableHeader>
-          <TableRow>
-            {columns.map((col) => (
-              <TableHead
-                key={col}
-                className="cursor-pointer select-none"
-                onClick={() => handleSort(col)}
-              >
-                {col}
-                {sortBy === col && (sortAsc ? " 🔼" : " 🔽")}
-              </TableHead>
-            ))}
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {paginatedData.map((row) => (
-            <TableRow key={row.id}>
-              {columns.map((col) => (
-                <TableCell
-                  key={col}
-                  className={
-                    i18n.language === "fa" ? "text-right" : "text-left"
-                  }
-                >
-                  {row[col]}
-                </TableCell>
+      {isLoading ? (
+        <div className="flex items-center justify-center py-10 text-muted-foreground">
+          {t("loading")}...
+        </div>
+      ) : (
+        <>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                {columns.map((col) => (
+                  <TableHead
+                    key={col}
+                    className="cursor-pointer select-none"
+                    onClick={() => handleSort(col)}
+                  >
+                    {col}
+                    {sortBy === col && (sortAsc ? " 🔼" : " 🔽")}
+                  </TableHead>
+                ))}
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {paginatedData.map((row) => (
+                <TableRow key={row.id}>
+                  {columns.map((col) => (
+                    <TableCell
+                      key={col}
+                      className={
+                        i18n.language === "fa" ? "text-right" : "text-left"
+                      }
+                    >
+                      {row[col]}
+                    </TableCell>
+                  ))}
+                </TableRow>
               ))}
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+            </TableBody>
+          </Table>
 
-      <div className="flex items-center justify-between pt-2">
-        <div className="text-sm text-muted-foreground">
-          {t("table.page", { page, totalPages })}
-        </div>
-        <div className="flex gap-2">
-          <button
-            onClick={() => setPage((p) => Math.max(p - 1, 1))}
-            disabled={page === 1}
-            className="px-2 py-1 border rounded disabled:opacity-50"
-          >
-            {t("table.prev")}
-          </button>
-          <button
-            onClick={() => setPage((p) => Math.min(p + 1, totalPages))}
-            disabled={page === totalPages}
-            className="px-2 py-1 border rounded disabled:opacity-50"
-          >
-            {t("table.next")}
-          </button>
-        </div>
-      </div>
+          <div className="flex items-center justify-between pt-2">
+            <div className="text-sm text-muted-foreground">
+              {t("table.page", { page, totalPages })}
+            </div>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setPage((p) => Math.max(p - 1, 1))}
+                disabled={page === 1}
+                className="px-2 py-1 border rounded disabled:opacity-50"
+              >
+                {t("table.prev")}
+              </button>
+              <button
+                onClick={() => setPage((p) => Math.min(p + 1, totalPages))}
+                disabled={page === totalPages}
+                className="px-2 py-1 border rounded disabled:opacity-50"
+              >
+                {t("table.next")}
+              </button>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
