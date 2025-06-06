@@ -73,9 +73,9 @@ pnpm build
 ## 🧪 Run Tests
 
 ```bash
-pnpm test
+pnpm vitest
 # or
-yarn test
+yarn vitest
 # or
 npx vitest
 ```
@@ -186,9 +186,9 @@ pnpm build
 4. **Run tests:**
 
 ```bash
-pnpm test
+pnpm vitest
 # or
-yarn test
+yarn vitest
 # or
 npx vitest
 ```
@@ -249,9 +249,9 @@ pnpm build
 ۴. **اجرای تست‌ها:**
 
 ```bash
-pnpm test
+pnpm vitest
 # یا
-yarn test
+yarn vitest
 # یا
 npx vitest
 ```
