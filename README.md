@@ -90,53 +90,137 @@ npx vitest
 
 This project is for demonstration and evaluation purposes.
 
-# پروژه تست Devotel
+---
 
-یک پروژه فرم بیمه داینامیک ساخته‌شده با **React**، **Vite**، **React Hook Form** و **React Query**. این پروژه به‌عنوان ارزیابی فنی طراحی شده و قابلیت‌های رندر فرم داینامیک، ارتباط با API و نمایش داده‌ها در جدول را نشان می‌دهد.
+## 🛠 Setup Instructions
 
-## 🌟 ویژگی‌ها
+1. **Install dependencies:**
 
-- 📄 رندر فرم به‌صورت داینامیک از API
-- ⚙️ نمایش شرطی فیلدها و select وابسته به داده‌های دیگر
-- ✅ اعتبارسنجی فرم با Yup و React Hook Form
-- 📥 ارسال داده‌های فرم به سرور
-- 📊 نمایش داده‌های ثبت‌شده در جدول قابل جستجو و مرتب‌سازی
-- 🌐 پشتیبانی از چندزبانگی با `react-i18next`
-- 💡 رابط کاربری مدرن با Radix و TailwindCSS
-- 🔬 تست واحد برای هوک‌ها و کامپوننت‌ها با Vitest
-
-## 🚀 تکنولوژی‌ها
-
-- **React 19 + Vite**
-- **TypeScript**
-- **React Hook Form**
-- **Yup**
-- **React Query (TanStack)**
-- **TailwindCSS**
-- **Framer Motion**
-- **Radix UI**
-- **Vitest + Testing Library**
-- **i18next**
-
-## 📁 ساختار پروژه
-
-```
-├── public/
-├── src/
-│   ├── atomic/             # کامپوننت‌ها و سرویس‌های سطح پایین
-│   ├── hooks/              # هوک‌های سفارشی (کوئری‌ها و فرم‌ها)
-│   ├── pages/              # صفحات اصلی (مثل FormPage و HomePage)
-│   ├── i18n.ts             # تنظیمات ترجمه
-│   ├── main.tsx            # نقطه ورود اپلیکیشن
-│   └── ...
-├── package.json
-├── vite.config.ts
-└── tsconfig.json
+```bash
+pnpm install
+# or
+yarn install
+# or
+npm install
 ```
 
-## ⚙️ شروع به کار
+2. **Start the development server:**
 
-### 1. نصب وابستگی‌ها
+```bash
+pnpm dev
+# or
+yarn dev
+# or
+npm run dev
+```
+
+3. **Build for production:**
+
+```bash
+pnpm build
+```
+
+4. **Run tests:**
+
+```bash
+pnpm test
+# or
+yarn test
+# or
+npx vitest
+```
+
+---
+
+## 🔌 API Usage Details
+
+- `GET /api/insurance/forms`: Fetches dynamic insurance form structure.
+- `POST /api/insurance/forms/submit`: Submits form data to backend.
+- `GET /api/insurance/forms/submissions`: Returns list of previously submitted applications.
+- Dynamic selects (e.g. `state`) use:
+  - `GET /api/getStates?country=Canada`: returns dynamic options based on selected country.
+
+All API URLs are assumed to be prefixed with `https://assignment.devotel.io`.
+
+---
+
+## ⚠️ Assumptions Made
+
+- All forms follow the same structure and schema format provided in the test instructions.
+- API returns consistent structure (e.g., `states: string[]` for dynamic selects).
+- Error handling and fallback logic for API failures are basic due to limited spec.
+- Translation keys (e.g., `t("form")`) exist in both `en` and `fa` locales.
+- DynamicForm assumes input field types are standard (`text`, `select`, `radio`, `group`, etc.).
+- All tests are written with the assumption that components and hooks behave synchronously in the test environment (no debounce/throttle).
+
+---
+
+## 🛠 Setup Instructions
+
+1. **Install dependencies:**
+
+```bash
+pnpm install
+# or
+yarn install
+# or
+npm install
+```
+
+2. **Start the development server:**
+
+```bash
+pnpm dev
+# or
+yarn dev
+# or
+npm run dev
+```
+
+3. **Build for production:**
+
+```bash
+pnpm build
+```
+
+4. **Run tests:**
+
+```bash
+pnpm test
+# or
+yarn test
+# or
+npx vitest
+```
+
+---
+
+## 🔌 API Usage Details
+
+- `GET /api/insurance/forms`: Fetches dynamic insurance form structure.
+- `POST /api/insurance/forms/submit`: Submits form data to backend.
+- `GET /api/insurance/forms/submissions`: Returns list of previously submitted applications.
+- Dynamic selects (e.g. `state`) use:
+  - `GET /api/getStates?country=Canada`: returns dynamic options based on selected country.
+
+All API URLs are assumed to be prefixed with `https://assignment.devotel.io`.
+
+---
+
+## ⚠️ Assumptions Made
+
+- All forms follow the same structure and schema format provided in the test instructions.
+- API returns consistent structure (e.g., `states: string[]` for dynamic selects).
+- Error handling and fallback logic for API failures are basic due to limited spec.
+- Translation keys (e.g., `t("form")`) exist in both `en` and `fa` locales.
+- DynamicForm assumes input field types are standard (`text`, `select`, `radio`, `group`, etc.).
+- All tests are written with the assumption that components and hooks behave synchronously in the test environment (no debounce/throttle).
+
+---
+
+## 🛠 دستورالعمل راه‌اندازی
+
+۱. **نصب وابستگی‌ها:**
 
 ```bash
 pnpm install
@@ -146,7 +230,7 @@ yarn install
 npm install
 ```
 
-### 2. اجرای پروژه در حالت توسعه
+۲. **اجرای سرور توسعه:**
 
 ```bash
 pnpm dev
@@ -156,13 +240,13 @@ yarn dev
 npm run dev
 ```
 
-### 3. ساخت نسخه نهایی برای تولید
+۳. **ساخت نسخه نهایی:**
 
 ```bash
 pnpm build
 ```
 
-## 🧪 اجرای تست‌ها
+۴. **اجرای تست‌ها:**
 
 ```bash
 pnpm test
@@ -172,12 +256,25 @@ yarn test
 npx vitest
 ```
 
-## 📝 نکات
+---
 
-- APIها از مسیر `https://assignment.devotel.io` دریافت می‌شوند یا mock شده‌اند
-- تمامی فرم‌ها و داده‌های ارسال‌شده به‌صورت داینامیک بارگذاری می‌شوند
-- selectهای داینامیک مانند `state` قابلیت وابستگی به مقدار `country` را دارند
+## 🔌 جزئیات استفاده از API
 
-## 📄 لایسنس
+- `GET /api/insurance/forms`: دریافت ساختار فرم بیمه به‌صورت داینامیک
+- `POST /api/insurance/forms/submit`: ارسال اطلاعات فرم به سرور
+- `GET /api/insurance/forms/submissions`: لیست درخواست‌های ارسال‌شده
+- گزینه‌های وابسته مانند `state` از این API استفاده می‌کنند:
+  - `GET /api/getStates?country=Canada`
 
-این پروژه صرفاً برای مقاصد ارزیابی و نمایش فنی طراحی شده است.
+تمام URLها فرض شده که با `https://assignment.devotel.io` شروع می‌شوند.
+
+---
+
+## ⚠️ فرضیات پروژه
+
+- تمام فرم‌ها از ساختار واحد ارائه‌شده در مستندات پیروی می‌کنند.
+- ساختار بازگشتی APIها یکسان است (مثلاً `states: string[]`).
+- مدیریت خطاها و fallback ساده در نظر گرفته شده به دلیل نبود جزئیات دقیق‌تر.
+- کلیدهای ترجمه مثل `t("form")` در زبان‌های فارسی و انگلیسی موجودند.
+- کامپوننت `DynamicForm` فرض می‌کند فیلدها از انواع رایج هستند (`text`, `select`, `radio`, `group`).
+- تست‌ها با فرض عملکرد هم‌زمانی (sync) کامپوننت‌ها نوشته شده‌اند (بدون debounce/throttle).
