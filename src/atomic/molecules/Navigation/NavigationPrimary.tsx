@@ -6,10 +6,13 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "./Navigationbar";
+import { useTranslation } from "react-i18next";
 
 const NavigationPrimary = () => {
   const location = useLocation();
   const isFormPage = location.pathname === "/form";
+
+  const { t } = useTranslation();
 
   return (
     <NavigationMenu>
@@ -20,7 +23,7 @@ const NavigationPrimary = () => {
               asChild
               className={navigationMenuTriggerStyle()}
             >
-              <Link to="/form">Form</Link>
+              <Link to="/form">{t("form")}</Link>
             </NavigationMenuLink>
           )}
 
@@ -29,7 +32,7 @@ const NavigationPrimary = () => {
               asChild
               className={navigationMenuTriggerStyle()}
             >
-              <Link to="/">Home</Link>
+              <Link to="/">{t("home")}</Link>
             </NavigationMenuLink>
           )}
         </NavigationMenuItem>
