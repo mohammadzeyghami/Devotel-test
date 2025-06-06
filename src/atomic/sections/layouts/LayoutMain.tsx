@@ -38,9 +38,14 @@ export default function LayoutMain({ children }: { children: ReactNode }) {
           <div className="flex justify-between w-full gap-4 pt-4 mb-4">
             <NavigationPrimary />
             <div className="flex items-center gap-2 ms-auto">
-              <Button onClick={() => setDark((d) => !d)}>{t("toggle")}</Button>
+              <Button
+                className="text-[10px]"
+                onClick={() => setDark((d) => !d)}
+              >
+                {t("toggle")}
+              </Button>
               <Select onValueChange={changeLang} value={i18n.language}>
-                <SelectTrigger className="w-[100px]">
+                <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
