@@ -45,6 +45,7 @@ const resources = {
       toggle: "تغییر حالت تاریک",
       language: "زبان",
       home: "خانه",
+      form: "فرم",
       about: "درباره ما",
       loading: "در حال بارگذاری فرم‌ها...",
       error_loading_forms: "بارگذاری فرم‌ها با خطا مواجه شد",
