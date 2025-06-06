@@ -43,7 +43,9 @@ const CheckboxPrimary = ({
             />
           )}
         />
-        <Label htmlFor={name}>{label}</Label>
+        <Label required={required} htmlFor={name}>
+          {label}
+        </Label>
       </div>
 
       <AnimatePresence>

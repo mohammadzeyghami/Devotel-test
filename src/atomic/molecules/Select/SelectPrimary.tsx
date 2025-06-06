@@ -51,8 +51,10 @@ const SelectPrimary = ({
   const allOptions = isDynamic
     ? Array.isArray(data)
       ? data.map((opt: string) => ({ label: opt, value: opt }))
-      : Array.isArray(data?.states)
-      ? data.states.map((opt: string) => ({ label: opt, value: opt }))
+      : // @ts-ignore
+      Array.isArray(data?.states)
+      ? // @ts-ignore
+        data.states.map((opt: string) => ({ label: opt, value: opt }))
       : []
     : (options || []).map((opt: any) =>
         typeof opt === "string" ? { label: opt, value: opt } : opt
@@ -60,7 +62,11 @@ const SelectPrimary = ({
 
   return (
     <div className="flex flex-col mb-4">
-      {label && <Label className="mb-1 font-medium">{label}</Label>}
+      {label && (
+        <Label required={required} className="mb-1 font-medium">
+          {label}
+        </Label>
+      )}
 
       <Controller
         name={name}

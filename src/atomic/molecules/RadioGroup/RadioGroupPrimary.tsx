@@ -24,7 +24,11 @@ const RadioGroupPrimary = ({
 
   return (
     <div className="flex flex-col gap-2 mb-4">
-      {label && <Label className="mb-1 font-medium">{label}</Label>}
+      {label && (
+        <Label required={required} className="mb-1 font-medium">
+          {label}
+        </Label>
+      )}
 
       <Controller
         name={name}

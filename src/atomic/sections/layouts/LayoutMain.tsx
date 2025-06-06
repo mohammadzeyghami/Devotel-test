@@ -1,4 +1,5 @@
 import { Button } from "@/atomic/molecules/Button/button";
+import NavigationPrimary from "@/atomic/molecules/Navigation/NavigationPrimary";
 import {
   Select,
   SelectContent,
@@ -12,7 +13,6 @@ import {
 } from "@/atomic/molecules/Sidebar/sidebar";
 import { useEffect, useState, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
 
 export default function LayoutMain({ children }: { children: ReactNode }) {
   const [dark, setDark] = useState(false);
@@ -36,14 +36,7 @@ export default function LayoutMain({ children }: { children: ReactNode }) {
       <SidebarInset>
         <header className="flex items-center h-16 gap-2 px-4 border-b">
           <div className="flex justify-between w-full gap-4 pt-4 mb-4">
-            <div className="flex gap-4">
-              <Link to="/" className="underline">
-                {t("home")}
-              </Link>
-              <Link to="/form" className="underline">
-                {t("form")}
-              </Link>
-            </div>
+            <NavigationPrimary />
             <div className="flex items-center gap-2 ms-auto">
               <Button onClick={() => setDark((d) => !d)}>{t("toggle")}</Button>
               <Select onValueChange={changeLang} value={i18n.language}>

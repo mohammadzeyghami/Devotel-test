@@ -1,6 +1,12 @@
 // src/atomic/services/customTanstackHooks/useDynamicOptions/useDynamicOptions.ts
+
 import { api } from "@/lib/axios";
 import { useQuery } from "@tanstack/react-query";
+
+interface DynamicOptionsResponse {
+  country: string;
+  states: string[];
+}
 
 interface UseDynamicOptionsProps {
   endpoint: string;
@@ -15,15 +21,22 @@ export const useDynamicOptions = ({
   dependsOnKey,
   dependsOnValue,
   enabled = false,
+  fieldId,
 }: UseDynamicOptionsProps) => {
-  return useQuery({
-    queryKey: ["dynamicOptions", endpoint, dependsOnValue],
+  return useQuery<string[]>({
+    queryKey: ["dynamicOptions", fieldId, endpoint, dependsOnValue],
     enabled: enabled && !!dependsOnValue,
     queryFn: async () => {
       const url = `${endpoint}?${dependsOnKey}=${dependsOnValue}`;
-      const res = await api.get(url);
-      // اینجا فرض می‌کنیم داده‌ها در کلید states برمی‌گردند
-      return res.data.states ?? [];
+      const res = await api.get<DynamicOptionsResponse>(url);
+
+      if (!res.data?.states || !Array.isArray(res.data.states)) {
+        throw new Error(
+          "Invalid response format: 'states' key missing or invalid"
+        );
+      }
+
+      return res.data.states;
     },
   });
 };

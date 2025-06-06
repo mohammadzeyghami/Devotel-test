@@ -1,4 +1,3 @@
-import React from "react";
 import { Controller, useFormState } from "react-hook-form";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
@@ -32,7 +31,7 @@ const InputPrimary = ({
   return (
     <div className={`flex flex-col mb-4 ${className}`}>
       {label && (
-        <Label htmlFor={name} className="mb-1 font-medium">
+        <Label required={required} htmlFor={name} className="mb-1 font-medium">
           {label}
         </Label>
       )}

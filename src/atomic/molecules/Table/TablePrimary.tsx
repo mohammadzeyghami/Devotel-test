@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import i18n from "@/i18n"; // 👈 برای بررسی زبان فعلی
+import i18n from "@/i18n";
 import { Input } from "../Input/input";
 import {
   Table,
